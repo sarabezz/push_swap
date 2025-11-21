@@ -6,7 +6,7 @@
 /*   By: sarabermudez <sarabermudez@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 17:07:02 by sarabermude       #+#    #+#             */
-/*   Updated: 2025/11/19 14:17:48 by sarabermude      ###   ########.fr       */
+/*   Updated: 2025/11/21 19:02:16 by sarabermude      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,12 @@ int	get_cost_a(t_stack_array *a, int value)
 	int	prev;
 	int	curr;
 
-	i = 0;
 	if (a->size == 0)
 		return (0);
+	i = 0;
 	while (i < a->size)
 	{
-		prev_index = i - 1;
-		if (prev_index < 0)
-			prev_index = a->size - 1;
+		prev_index = (i - 1 + a->size) % a->size;
 		prev = a->array[prev_index];
 		curr = a->array[i];
 		if ((prev < value && value < curr)
@@ -34,7 +32,7 @@ int	get_cost_a(t_stack_array *a, int value)
 			return (i);
 		i++;
 	}
-	return (i);
+	return (0);
 }
 
 int	adjust_cost(int cost, int size)

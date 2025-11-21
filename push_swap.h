@@ -6,7 +6,7 @@
 /*   By: sarabermudez <sarabermudez@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 16:39:28 by sarabermude       #+#    #+#             */
-/*   Updated: 2025/11/19 21:32:47 by sarabermude      ###   ########.fr       */
+/*   Updated: 2025/11/21 20:53:39 by sarabermude      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int				dupl_nums(int argc, int *nums);
 void			push_no_count(t_stack **stack, int value);
 int				is_in_lis(int value, int *lis, int lis_size);
 void			remove_node(t_stack **stack);
-void			free_stack(t_stack **stack);
 void			move_to_b(t_move_args *args);
 void			final_rotate(t_stack **a);
 void			sa(t_stack **a);
@@ -69,17 +68,19 @@ void			rra(t_stack **a);
 void			rrb(t_stack **b);
 
 // --- Funciones push_swap --- 
-int				*parse_args(int argc, char **argv);
-void			fill_stack(t_stack **a, int *nums, int size);
+t_stack_array	*convert_to_array(t_stack *stack);
+void			insert_nums(t_stack **a, int *nums, int size);
 int				stack_size(t_stack *stack);
 int				*stack_to_array(t_stack *stack, int size);
+void			free_stack(t_stack **stack);
 int				get_min_index(t_stack *a);
 void			move_elements_to_b(t_move_args *move_args,
 					int *lis, int lis_size);
 void			move_elements_to_a(t_stack **a, t_stack **b);
 void			ft_free_split(char **split);
-t_stack_array	*convert_to_array(t_stack *stack);
-void			parse_and_fill(t_stack **a, char *arg);
+void			sort_stacks(t_stack **a, t_stack **b);
+void			parse_args(t_stack **a, char *arg);
+void			fill_stack(t_stack **a, int argc, char **argv);
 int				main(int argc, char **argv);
 
 #endif

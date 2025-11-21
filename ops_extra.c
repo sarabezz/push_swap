@@ -6,7 +6,7 @@
 /*   By: sarabermudez <sarabermudez@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 20:33:24 by sarabermude       #+#    #+#             */
-/*   Updated: 2025/11/19 21:34:01 by sarabermude      ###   ########.fr       */
+/*   Updated: 2025/11/21 19:03:30 by sarabermude      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void	final_rotate(t_stack **a)
 	if (!a || !*a)
 		return ;
 	size = stack_size(*a);
+	if (size <= 1)
+		return ;
 	min_index = get_min_index(*a);
 	if (min_index <= size / 2)
 		while (min_index-- > 0)

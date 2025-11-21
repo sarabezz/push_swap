@@ -6,57 +6,30 @@
 /*   By: sarabermudez <sarabermudez@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 02:21:36 by sarabermude       #+#    #+#             */
-/*   Updated: 2025/11/19 21:34:09 by sarabermude      ###   ########.fr       */
+/*   Updated: 2025/11/21 20:53:27 by sarabermude      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*parse_args(int argc, char **argv)
+t_stack_array	*convert_to_array(t_stack *stack)
 {
-	int		*nums;
-	int		i;
+	int				size;
+	int				*arr;
+	t_stack_array	*sa;
 
-	if (argc < 2)
+	size = stack_size(stack);
+	arr = stack_to_array(stack, size);
+	sa = malloc(sizeof(t_stack_array));
+	if (!sa)
 		ft_error();
-	nums = malloc(sizeof(int) * (argc - 1));
-	if (!nums)
-		ft_error();
-	i = 1;
-	while (i < argc)
-	{
-		nums[i - 1] = ft_atoi_checked(argv[i]);
-		i++;
-	}
-	return (nums);
+	sa->array = arr;
+	sa->size = size;
+	sa->capacity = size;
+	return (sa);
 }
 
-/*int	*parse_args(int argc, char **argv, int *out_size)
-{
-	int		*nums;
-	int		i;
-
-	if (argc < 2)
-		ft_error();
-	nums = malloc(sizeof(int) * (argc - 1));
-	if (!nums)
-		ft_error();
-	i = 1;
-	while (i < argc)
-	{
-		nums[i - 1] = ft_atoi_checked(argv[i]);
-		i++;
-	}
-	if (dupl_nums(argc - 1, nums))
-	{
-		free(nums);
-		ft_error();
-	}
-	*out_size = argc - 1;
-	return (nums);
-}*/
-
-void	fill_stack(t_stack **a, int *nums, int size)
+void	insert_nums(t_stack **a, int *nums, int size)
 {
 	int	i;
 
@@ -103,4 +76,24 @@ int	*stack_to_array(t_stack *stack, int size)
 		i++;
 	}
 	return (arr);
+}
+
+void	free_stack(t_stack **stack)
+{
+	t_stack	*tmp;
+	t_stack	*start;
+	t_stack	*next;
+
+	if (!stack || !*stack)
+		return ;
+	start = *stack;
+	tmp = start->next;
+	while (tmp != start)
+	{
+		next = tmp->next;
+		free(tmp);
+		tmp = next;
+	}
+	free(start);
+	*stack = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: sarabermudez <sarabermudez@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 20:31:11 by sarabermude       #+#    #+#             */
-/*   Updated: 2025/11/19 21:31:28 by sarabermude      ###   ########.fr       */
+/*   Updated: 2025/11/21 19:08:25 by sarabermude      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,24 +81,4 @@ void	remove_node(t_stack **stack)
 	last->next = next;
 	next->prev = last;
 	*stack = next;
-}
-
-void	free_stack(t_stack **stack)
-{
-	t_stack	*tmp;
-	t_stack	*start;
-	t_stack	*next;
-
-	if (!stack || !*stack)
-		return ;
-	start = *stack;
-	tmp = start->next;
-	while (tmp != start)
-	{
-		next = tmp->next;
-		free(tmp);
-		tmp = next;
-	}
-	free(start);
-	*stack = NULL;
 }
