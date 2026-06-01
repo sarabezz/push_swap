@@ -39,6 +39,8 @@ void	sort_stacks(t_stack **a, t_stack **b)
 	free(info.array);
 	move_args.a = a;
 	move_args.b = b;
+	move_args.chunks_max = info.chunks_max;
+	move_args.chunks_num = vars.chunks_num;
 	move_elements_to_b(&move_args, vars.lis, vars.lis_size);
 	free(vars.lis);
 	free(vars.chunks);
