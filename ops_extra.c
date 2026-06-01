@@ -66,7 +66,7 @@ void	move_to_b(t_move_args *args)
 		while (moved < chunk_size)
 		{
 			top = (*(args->a))->nbr;
-			if (top <= args->chunks_max[chunks]
+			if (top <= args->chunks_max[chunk]
 				&& !is_in_lis(top, args->lis, args->lis_size))
 			{
 				pb(args->a, args->b);
