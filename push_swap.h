@@ -66,8 +66,6 @@ void			pb(t_stack **a, t_stack **b);
 void			push_node(t_stack **stack, t_stack *node);
 void			ra(t_stack **a);
 void			rb(t_stack **b);
-void			rr(t_stack **a, t_stack **b);
-void			rrr(t_stack **a, t_stack **b);
 void			rra(t_stack **a);
 void			rrb(t_stack **b);
 
@@ -78,7 +76,6 @@ int				stack_size(t_stack *stack);
 int				*stack_to_array(t_stack *stack, int size);
 void			free_stack(t_stack **stack);
 int				get_min_index(t_stack *a);
-void			rotate_both(t_stack **a, t_stack **b, int cost_a, int cost_b);
 void			move_elements_to_b(t_move_args *move_args,
 					int *lis, int lis_size);
 void			move_elements_to_a(t_stack **a, t_stack **b);
