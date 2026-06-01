@@ -76,3 +76,15 @@ void	rb(t_stack **b)
 	*b = (*b)->next;
 	printf("rb\n");
 }
+
+void	rr(t_stack **a, t_stack **b)
+{
+	ra(a);
+	rb(b);
+}
+
+void	rrr(t_stack **a, t_stack **b)
+{
+	rra(a);
+	rrb(b);
+}
