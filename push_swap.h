@@ -35,6 +35,8 @@ typedef struct s_move_args
 	int		*lis;
 	int		lis_size;
 	int		*operations;
+	int		*chunks_max;
+	int		chunks_num;
 }	t_move_args;
 
 typedef struct s_sort_vars
