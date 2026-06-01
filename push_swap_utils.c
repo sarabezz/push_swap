@@ -38,42 +38,28 @@ int	get_min_index(t_stack *a)
 	return (min_index);
 }
 
-void rotate_both(t_stack **a, t_stack **b, int cost_a, int cost_b)
+static void	rotate_to_index(t_stack **stack, int index, int size, char stack_id)
 {
-    // mientras ambos positivos → rr
-    while (cost_a > 0 && cost_b > 0)
-    {
-        rr(a, b);
-        cost_a--;
-        cost_b--;
-    }
-    // mientras ambos negativos → rrr
-    while (cost_a < 0 && cost_b < 0)
-    {
-        rrr(a, b);
-        cost_a++;
-        cost_b++;
-    }
-    // el que queda lo hace solo
-    while (cost_a > 0)
+	if (index <= size / 2)
 	{
-		ra(a);
-		cost_a--;
+		while (index-- > 0)
+		{
+			if (stack_id == 'a')
+				ra(stack);
+			else
+				rb(stack);
+		}
 	}
-    while (cost_a < 0)
+	else
 	{
-		rra(a);
-		cost_a++;
-	}
-    while (cost_b > 0)
-	{
-		rb(b);
-		cost_b--;
-	}
-    while (cost_b < 0)
-	{
-		rrb(b);
-		cost_b++;
+		index = size - index;
+		while (index-- > 0)
+		{
+			if (stack_id == 'a')
+				rra(stack);
+			else
+				rrb(stack);
+		}
 	}
 }
 
@@ -90,23 +76,14 @@ void	move_elements_to_a(t_stack **a, t_stack **b)
 	t_stack_array	*arr_b;
 	int				best_a;
 	int				best_b;
-	int             cost_a;
-    int             cost_b;
 
 	while (stack_size(*b) > 0)
 	{
 		arr_a = convert_to_array(*a);
 		arr_b = convert_to_array(*b);
 		find_min_cost(arr_a, arr_b, &best_a, &best_b);
-		if (best_a <= arr_a->size / 2)
-            cost_a = best_a;
-        else
-            cost_a = best_a - arr_a->size;
-        if (best_b <= arr_b->size / 2)
-            cost_b = best_b;
-        else
-            cost_b = best_b - arr_b->size;
-        rotate_both(a, b, cost_a, cost_b);
+		rotate_to_index(b, best_b, arr_b->size, 'b');
+		rotate_to_index(a, best_a, arr_a->size, 'a');
 		pa(a, b);
 		free(arr_a->array);
 		free(arr_a);
