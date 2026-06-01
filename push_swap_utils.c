@@ -55,10 +55,26 @@ void rotate_both(t_stack **a, t_stack **b, int cost_a, int cost_b)
         cost_b++;
     }
     // el que queda lo hace solo
-    while (cost_a > 0) { ra(a); cost_a--; }
-    while (cost_a < 0) { rra(a); cost_a++; }
-    while (cost_b > 0) { rb(b); cost_b--; }
-    while (cost_b < 0) { rrb(b); cost_b++; }
+    while (cost_a > 0)
+	{
+		ra(a);
+		cost_a--;
+	}
+    while (cost_a < 0)
+	{
+		rra(a);
+		cost_a++;
+	}
+    while (cost_b > 0)
+	{
+		rb(b);
+		cost_b--;
+	}
+    while (cost_b < 0)
+	{
+		rrb(b);
+		cost_b++;
+	}
 }
 
 void	move_elements_to_b(t_move_args *move_args, int *lis, int lis_size)
