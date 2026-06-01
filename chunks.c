@@ -85,15 +85,3 @@ int	init_chunks_resources(t_chunk_info *info)
 	}
 	return (1);
 }
-
-int	**get_chunks(t_chunk_info *info)
-{
-	if (!info || !info->array || !info->chunks_max || info->chunks_num <= 0)
-		return (NULL);
-	if (!init_chunks_resources(info))
-		return (NULL);
-	process_chunks(info);
-	free(info->used);
-	free(info->sorted);
-	return (info->chunks);
-}
