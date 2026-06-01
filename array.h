@@ -59,7 +59,6 @@ void	process_chunks(t_chunk_info *info);
 int		int_sqrt(int x);
 int		*create_chunks(int *array, int total_size, int *chunks_num);
 int		init_chunks_resources(t_chunk_info *info);
-int		**get_chunks(t_chunk_info *info);
 
 // --- LIS (Longest Increasing Subsequence) ---
 int		*longest_increasing_subsequence(int *array, int size, int *lis_size);
