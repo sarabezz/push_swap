@@ -22,7 +22,7 @@ static void	initialize_sort_info(t_stack **a, t_chunk_info *info,
 	info->array = arr;
 	info->total_size = stack_size(*a);
 	info->chunks_num = *chunks_num;
-	info->chunks_max = NULL;
+	info->chunks_max = create_chunks(arr, stack_size(*a), chunks_num);
 	info->chunk_sizes = NULL;
 }
 
