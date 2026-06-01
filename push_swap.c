@@ -21,8 +21,8 @@ static void	initialize_sort_info(t_stack **a, t_chunk_info *info,
 	*chunks_num = int_sqrt(stack_size(*a));
 	info->array = arr;
 	info->total_size = stack_size(*a);
-	info->chunks_max = create_chunks(arr, stack_size(*a), chunks_num);
 	info->chunks_num = *chunks_num;
+	info->chunks_max = create_chunks(arr, stack_size(*a), chunks_num);
 	info->chunk_sizes = NULL;
 }
 
@@ -35,6 +35,7 @@ void	sort_stacks(t_stack **a, t_stack **b)
 	initialize_sort_info(a, &info, &vars.chunks_num);
 	vars.lis = longest_increasing_subsequence(info.array,
 			info.total_size, &vars.lis_size);
+	vars.chunks = get_chunks(&info);
 	free(info.array);
 	move_args.a = a;
 	move_args.b = b;
@@ -42,7 +43,7 @@ void	sort_stacks(t_stack **a, t_stack **b)
 	move_args.chunks_num = vars.chunks_num;
 	move_elements_to_b(&move_args, vars.lis, vars.lis_size);
 	free(vars.lis);
-	free(info.chunks_max);
+	free(vars.chunks);
 	move_elements_to_a(a, b);
 }
 
