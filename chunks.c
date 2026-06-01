@@ -22,18 +22,6 @@ int	int_sqrt(int x)
 	return (i - 1);
 }
 
-static int	*alloc_chunks(int total_size, int *chunks_num, int *chunk_size)
-{
-	int	*chunks;
-
-	*chunk_size = int_sqrt(2 * total_size);
-	if (*chunk_size == 0)
-		*chunk_size = 1;
-	*chunks_num = (total_size + *chunk_size - 1) / *chunk_size;
-	chunks = malloc(sizeof(int) * (*chunks_num));
-	return (chunks);
-}
-
 int	*create_chunks(int *array, int total_size, int *chunks_num)
 {
 	int				*chunks;
@@ -46,7 +34,10 @@ int	*create_chunks(int *array, int total_size, int *chunks_num)
 	sorted = copy_sort(array, total_size);
 	if (!sorted)
 		return (NULL);
-	chunks = alloc_chunks(total_size, chunks_num, &chunk_size);
+	chunk_size = (total_size + *chunks_num - 1) / *chunks_num;
+	if (chunk_size == 0)
+		chunk_size = 1;
+	chunks = malloc(sizeof(int) * (*chunks_num));
 	if (!chunks)
 		return (free(sorted), NULL);
 	create_info.chunks = chunks;
