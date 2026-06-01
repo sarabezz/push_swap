@@ -18,6 +18,7 @@ static void	initialize_sort_info(t_stack **a, t_chunk_info *info,
 	int		*arr;
 
 	arr = stack_to_array(*a, stack_size(*a));
+	*chunks_num = int_sqrt(stack_size(*a));
 	info->array = arr;
 	info->total_size = stack_size(*a);
 	info->chunks_max = create_chunks(arr, stack_size(*a), chunks_num);
