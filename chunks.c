@@ -34,6 +34,8 @@ int	*create_chunks(int *array, int total_size, int *chunks_num)
 	sorted = copy_sort(array, total_size);
 	if (!sorted)
 		return (NULL);
+	if (*chunks_num <= 0)
+    	*chunks_num = 1;
 	chunk_size = (total_size + *chunks_num - 1) / *chunks_num;
 	if (chunk_size == 0)
 		chunk_size = 1;
