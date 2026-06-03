@@ -35,7 +35,6 @@ void	sort_stacks(t_stack **a, t_stack **b)
 	initialize_sort_info(a, &info, &vars.chunks_num);
 	vars.lis = longest_increasing_subsequence(info.array,
 			info.total_size, &vars.lis_size);
-	vars.chunks = get_chunks(&info);
 	free(info.array);
 	move_args.a = a;
 	move_args.b = b;
@@ -43,7 +42,7 @@ void	sort_stacks(t_stack **a, t_stack **b)
 	move_args.chunks_num = vars.chunks_num;
 	move_elements_to_b(&move_args, vars.lis, vars.lis_size);
 	free(vars.lis);
-	free(vars.chunks);
+	free(vars.chunks_max);
 	move_elements_to_a(a, b);
 }
 
