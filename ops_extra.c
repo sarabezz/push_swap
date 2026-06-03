@@ -53,29 +53,22 @@ void	rrb(t_stack **b)
 
 void	move_to_b(t_move_args *args)
 {
-	int	chunk;
+	int	size;
 	int	moved;
 	int	top;
-	int	chunk_size;
 
-	chunk = 0;
-	while (chunk < args->chunks_num)
+	size = stack_size(*(args->a));
+	moved = 0;
+	while (moved < size - args->lis_size)
 	{
-		moved = 0;
-		chunk_size = stack_size(*(args->a));
-		while (moved < chunk_size)
+		top = (*(args->a))->nbr;
+		if (!is_in_lis(top, args->lis, args->lis_size))
 		{
-			top = (*(args->a))->nbr;
-			if (top <= args->chunks_max[chunk]
-				&& !is_in_lis(top, args->lis, args->lis_size))
-			{
-				pb(args->a, args->b);
-				moved++;
-			}
-			else
-				ra(args->a);
+			pb(args->a, args->b);
+			moved++;
 		}
-		chunk++;
+		else
+			ra(args->a);
 	}
 }
 
