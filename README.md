@@ -1,3 +1,5 @@
+*Este proyecto ha sido creado como parte del currículo de 42 por sarabezz.*
+
 # PUSH_SWAP
 
 A C program that sorts a stack of integers using two stacks and a limited set of operations.
